@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Radhika Khatter — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0F1116;
+  --panel:#171A22;
+  --panel-2:#1D212B;
+  --line:#2A2F3B;
+  --ink:#ECEAE2;
+  --ink-dim:#9198A8;
+  --amber:#E7A845;
+  --slate:#6E86D6;
+  --radius:3px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px);}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Space Grotesk',sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;}
+}
+::selection{background:var(--amber);color:#0F1116;}
+
+.wrap{max-width:960px;margin:0 auto;padding:0 28px;}
+a{color:inherit;}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:env(safe-area-inset-top,0px);z-index:40;
+  background:rgba(15,17,22,.85);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;}
+.brand{font-family:'JetBrains Mono',monospace;font-weight:600;font-size:15px;color:var(--amber);text-decoration:none;letter-spacing:-.02em;}
+.navlinks{display:flex;gap:26px;font-size:14px;}
+.navlinks a{text-decoration:none;color:var(--ink-dim);transition:color .2s;}
+.navlinks a:hover{color:var(--ink);}
+.navlinks{display:none;}
+@media(min-width:640px){.navlinks{display:flex;}}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding:96px 0 80px;overflow:hidden;}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:44px;align-items:center;}
+@media(min-width:860px){.hero-grid{grid-template-columns:1.15fr 1fr;}}
+
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--slate);margin:0 0 18px;}
+h1.hero-title{
+  font-size:clamp(34px,6vw,54px);line-height:1.05;font-weight:700;margin:0 0 20px;letter-spacing:-.02em;
+}
+.hero-title .role{display:block;color:var(--ink-dim);font-weight:500;font-size:.5em;margin-top:12px;}
+.hero-sub{color:var(--ink-dim);font-size:16px;line-height:1.65;max-width:46ch;margin:0 0 30px;}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;}
+.btn{
+  font-family:'JetBrains Mono',monospace;font-size:13.5px;padding:12px 20px;border-radius:var(--radius);
+  text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);
+  transition:transform .25s ease,border-color .25s ease,background .25s ease;
+}
+.btn-primary{background:var(--amber);color:#14161c;border-color:var(--amber);font-weight:600;}
+.btn-primary:hover{transform:translateY(-2px);}
+.btn-ghost{color:var(--ink);}
+.btn-ghost:hover{border-color:var(--ink-dim);transform:translateY(-2px);}
+
+/* code window */
+.code-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden;
+  box-shadow:0 30px 60px -20px rgba(0,0,0,.6);
+  transform:perspective(900px) rotateY(-6deg) rotateX(2deg);
+  transition:transform .4s ease;
+}
+.code-card:hover{transform:perspective(900px) rotateY(-2deg) rotateX(0.5deg);}
+.code-head{display:flex;gap:7px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--panel-2);}
+.dot{width:10px;height:10px;border-radius:50%;background:#3a3f4c;}
+.code-body{padding:20px 22px 26px;font-family:'JetBrains Mono',monospace;font-size:13.5px;line-height:1.75;color:#B9C0D0;min-height:220px;}
+.code-body .kw{color:var(--slate);}
+.code-body .str{color:var(--amber);}
+.code-body .prop{color:#8FD0B0;}
+#typecursor{display:inline-block;width:7px;background:var(--amber);animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+/* floating geometric shape */
+.geo{
+  position:absolute;right:-60px;top:20px;width:220px;height:220px;z-index:-1;opacity:.5;
+  animation:float 9s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-18px) rotate(8deg);}}
+
+/* ---------- SECTIONS ---------- */
+section{padding:70px 0;border-top:1px solid var(--line);}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:36px;}
+.sec-num{font-family:'JetBrains Mono',monospace;color:var(--slate);font-size:14px;}
+h2{font-size:26px;margin:0;font-weight:600;letter-spacing:-.01em;}
+
+/* about */
+.about-text{color:var(--ink-dim);font-size:16.5px;line-height:1.8;max-width:64ch;}
+.about-text strong{color:var(--ink);font-weight:600;}
+
+/* experience */
+.xp-item{display:grid;grid-template-columns:1fr;gap:6px;padding:22px 0;border-bottom:1px solid var(--line);}
+.xp-item:last-child{border-bottom:none;}
+@media(min-width:700px){.xp-item{grid-template-columns:190px 1fr;gap:24px;}}
+.xp-date{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink-dim);white-space:nowrap;}
+.xp-role{font-weight:600;font-size:16px;margin-bottom:4px;}
+.xp-org{color:var(--slate);font-size:14px;margin-bottom:10px;}
+.xp-item p{color:var(--ink-dim);font-size:14.5px;line-height:1.7;margin:0;}
+
+/* projects - tilt cards */
+.proj-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+@media(min-width:700px){.proj-grid{grid-template-columns:1fr 1fr;}}
+.proj-card{
+  background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:24px;
+  transition:transform .12s ease,border-color .3s ease;will-change:transform;
+}
+.proj-card:hover{border-color:#3b4152;}
+.proj-stack{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--slate);margin-bottom:10px;}
+.proj-card h3{margin:0 0 10px;font-size:17px;font-weight:600;}
+.proj-card p{color:var(--ink-dim);font-size:14px;line-height:1.65;margin:0 0 14px;}
+.proj-link{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--amber);text-decoration:none;}
+.proj-link:hover{text-decoration:underline;}
+
+/* skills */
+.skill-cols{display:grid;grid-template-columns:1fr;gap:22px;}
+@media(min-width:700px){.skill-cols{grid-template-columns:repeat(2,1fr);}}
+.skill-group h4{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--ink-dim);font-weight:500;margin:0 0 10px;}
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{border:1px solid var(--line);padding:6px 12px;border-radius:20px;font-size:13px;color:var(--ink);}
+
+/* achievements */
+.ach-list{list-style:none;margin:0;padding:0;display:grid;gap:14px;}
+.ach-list li{display:flex;gap:14px;font-size:15px;color:var(--ink-dim);line-height:1.6;padding-left:0;}
+.ach-list li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--amber);margin-top:9px;flex:0 0 auto;}
+.ach-list strong{color:var(--ink);font-weight:600;}
+
+/* education */
+.edu-item{margin-bottom:20px;}
+.edu-item h4{margin:0 0 4px;font-size:16px;font-weight:600;}
+.edu-item span{color:var(--ink-dim);font-size:14px;}
+
+/* footer */
+footer{padding:60px 0 50px;text-align:left;}
+footer h2{font-size:30px;margin:0 0 14px;}
+footer p{color:var(--ink-dim);max-width:44ch;margin:0 0 26px;}
+.foot-links{display:flex;gap:18px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:13.5px;}
+.foot-links a{text-decoration:none;color:var(--ink-dim);border-bottom:1px solid var(--line);padding-bottom:2px;transition:color .2s,border-color .2s;}
+.foot-links a:hover{color:var(--amber);border-color:var(--amber);}
+.copyright{margin-top:50px;font-size:12.5px;color:#5B6172;}
+
+/* dark scheme is default; light override */
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#F6F5F0;--panel:#FFFFFF;--panel-2:#EFEDE6;--line:#DEDBD1;--ink:#181A1F;--ink-dim:#5B5F6B;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">radhika.dev</a>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div id="top" class="hero">
+  <svg class="geo" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <polygon points="100,10 190,60 190,150 100,190 10,150 10,60" fill="none" stroke="#E7A845" stroke-width="1.2" opacity="0.5"/>
+    <polygon points="100,50 155,80 155,130 100,160 45,130 45,80" fill="none" stroke="#6E86D6" stroke-width="1.2" opacity="0.6"/>
+  </svg>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">// building things that work</p>
+      <h1 class="hero-title">Radhika Khatter<span class="role">Software Developer — Full-Stack &amp; Applied ML</span></h1>
+      <p class="hero-sub">I build full-stack applications and machine learning systems — from assistive EdTech tools to traffic forecasting models. Currently a Junior Developer at Target Integration, working with Python and Odoo.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#projects">See my work</a>
+        <a class="btn btn-ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="code-card">
+      <div class="code-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div class="code-body" id="typebox"></div>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><h2>About</h2></div>
+    <p class="about-text">I'm a Computer Science undergraduate at <strong>Dronacharya College of Engineering</strong>, currently working as a Junior Developer at <strong>Target Integration</strong>, where I work with Python, Odoo ORM, and XML customization across sales, purchase, and inventory workflows. My projects span assistive technology, machine learning, and data analysis — I care most about building software that is genuinely useful to the people who use it. Outside of code, I compete in Taekwondo at the national level.</p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Experience</h2></div>
+
+    <div class="xp-item">
+      <div class="xp-date">Jun 2026 — Present</div>
+      <div>
+        <div class="xp-role">Junior Developer</div>
+        <div class="xp-org">Target Integration, Gurugram</div>
+        <p>Gaining hands-on experience with Python and Odoo ORM, plus XML customization. Exploring sales, purchase, and inventory workflows and debugging fundamentals.</p>
+      </div>
+    </div>
+
+    <div class="xp-item">
+      <div class="xp-date">Jun 2024</div>
+      <div>
+        <div class="xp-role">Summer School Student</div>
+        <div class="xp-org">International Centre for Theoretical Sciences (ICTS), Bangalore</div>
+        <p>Strengthened R programming and applied mathematical foundations — linear algebra, probability, calculus, and statistics — for real-world data analysis through workshops and collaborative sessions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Projects</h2></div>
+    <div class="proj-grid">
+      <div class="proj-card" data-tilt>
+        <div class="proj-stack">Node.js · Express · React · MongoDB · Speech-to-Text</div>
+        <h3>MorphoMinds</h3>
+        <p>An assistive learning app for dyslexic users, with real-time handwriting feedback and speech-to-text. Built with an OpenDyslexic-based accessible UI and level-based progress tracking across subjects. Won 1st Runner-Up at DevOlympus Hackathon.</p>
+        <a class="proj-link" href="#">View project →</a>
+      </div>
+      <div class="proj-card" data-tilt>
+        <div class="proj-stack">Python · Scikit-Learn · Pandas · NumPy</div>
+        <h3>Traffic Demand Prediction</h3>
+        <p>A forecasting model using historical traffic, weather, road, and temporal data, with target encoding and cross-validation. Improved leaderboard score from 85.0 to 90.95 through feature engineering.</p>
+        <a class="proj-link" href="#">View project →</a>
+      </div>
+      <div class="proj-card" data-tilt>
+        <div class="proj-stack">Python · Scikit-Learn · GridSearchCV</div>
+        <h3>Housing Price Prediction</h3>
+        <p>An end-to-end ML pipeline for housing price prediction — preprocessing, feature engineering, and hyperparameter tuning across multiple models, with Random Forest performing best.</p>
+        <a class="proj-link" href="#">View project →</a>
+      </div>
+      <div class="proj-card" data-tilt>
+        <div class="proj-stack">Python · Pandas · Seaborn · TextBlob</div>
+        <h3>YouTube Video Analysis</h3>
+        <p>A data analysis tool uncovering trends, engagement, and sentiment insights from YouTube data, with TextBlob sentiment scoring visualized through Seaborn and Matplotlib.</p>
+        <a class="proj-link" href="#">View project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Skills</h2></div>
+    <div class="skill-cols">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <div class="tag-row">
+          <span class="tag">C</span><span class="tag">C++</span><span class="tag">Python</span><span class="tag">R</span><span class="tag">Java</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Web</h4>
+        <div class="tag-row">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">React</span><span class="tag">Node.js</span><span class="tag">Express</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Frameworks &amp; Libraries</h4>
+        <div class="tag-row">
+          <span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">Seaborn</span><span class="tag">Selenium</span><span class="tag">JWT</span><span class="tag">bcrypt</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Data &amp; Tools</h4>
+        <div class="tag-row">
+          <span class="tag">SQL</span><span class="tag">MongoDB</span><span class="tag">Firestore</span><span class="tag">Git</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="achievements">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Achievements</h2></div>
+    <ul class="ach-list">
+      <li><span><strong>GATE (CS) 2026</strong> — Qualified.</span></li>
+      <li><span><strong>Reliance Undergraduate Scholarship</strong> — Awarded as one of the top 5,000 scholars nationwide for academic performance and potential.</span></li>
+      <li><span><strong>NEF Innovation Awards 2026</strong> — Finalist, Top 50 Teams nationwide.</span></li>
+      <li><span><strong>DevOlympus Hackathon, 1st Runner-Up (2025)</strong> — Built MorphoMinds, an assistive EdTech platform for dyslexic learners.</span></li>
+      <li><span><strong>Research Publication</strong> — "AI-Based Smart Handover Techniques to Provide QoS in 6G Networks," published and presented at IJACEN and ICSET 2024, Bali, Indonesia.</span></li>
+      <li><span><strong>Taekwondo</strong> — National Bronze Medalist (2025), Khelo India State Silver Medalist (2025), Haryana State Bronze Medalist (2025).</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Education</h2></div>
+    <div class="edu-item">
+      <h4>BTech, Computer Science &amp; Engineering</h4>
+      <span>Dronacharya College of Engineering, Gurugram University · Expected 2027 · GPA 8.83/10</span>
+    </div>
+    <div class="edu-item">
+      <h4>Senior Secondary &amp; Secondary Education</h4>
+      <span>St. Michael's Sr. Sec. School · 12th — 96% (2023) · 10th — 91% (2021)</span>
+    </div>
+    <div class="edu-item">
+      <h4>Certifications</h4>
+      <span>NPTEL Introduction to Machine Learning (Elite, IIT Madras) · Foundation Course on IR4.0 Technologies — Microsoft &amp; SAP, Edunet · Selenium Real-Time Project, Udemy</span>
+    </div>
+  </div>
+</section>
+
+<footer id="contact" class="wrap">
+  <h2>Let's build something.</h2>
+  <p>Open to software development and ML roles. Reach out by email or find my work on GitHub and LinkedIn.</p>
+  <div class="foot-links">
+    <a href="mailto:radhika.26144@ggnindia.dronacharya.info">Email</a>
+    <a href="#">GitHub</a>
+    <a href="#">LinkedIn</a>
+  </div>
+  <div class="copyright">Gurugram, Haryana</div>
+</footer>
+
+<script>
+// hero typing animation
+(function(){
+  var target = document.getElementById('typebox');
+  var lines = [
+    ['<span class="kw">const</span> radhika = {'],
+    ['&nbsp;&nbsp;<span class="prop">role</span>: <span class="str">"Software Developer"</span>,'],
+    ['&nbsp;&nbsp;<span class="prop">focus</span>: [<span class="str">"full-stack"</span>, <span class="str">"ml"</span>],'],
+    ['&nbsp;&nbsp;<span class="prop">based_in</span>: <span class="str">"Gurugram, IN"</span>,'],
+    ['&nbsp;&nbsp;<span class="prop">currently</span>: <span class="str">"@ Target Integration"</span>'],
+    ['};']
+  ];
+  var flat = lines.map(function(l){return l[0];});
+  var full = flat.join('\n');
+  var i = 0;
+  target.innerHTML = '<span id="typecursor">&nbsp;</span>';
+  var cursor = document.getElementById('typecursor');
+  function step(){
+    if(i <= full.length){
+      var shown = full.slice(0, i).replace(/\n/g,'<br>');
+      target.innerHTML = shown;
+      target.appendChild(cursor);
+      i += 2;
+      setTimeout(step, 18);
+    }
+  }
+  step();
+})();
+
+// 3D tilt on project cards
+document.querySelectorAll('[data-tilt]').forEach(function(card){
+  card.addEventListener('mousemove', function(e){
+    var r = card.getBoundingClientRect();
+    var x = (e.clientX - r.left) / r.width - 0.5;
+    var y = (e.clientY - r.top) / r.height - 0.5;
+    card.style.transform = 'perspective(700px) rotateY(' + (x*8) + 'deg) rotateX(' + (-y*8) + 'deg) translateY(-2px)';
+  });
+  card.addEventListener('mouseleave', function(){
+    card.style.transform = 'perspective(700px) rotateY(0deg) rotateX(0deg) translateY(0)';
+  });
+});
+</script>
+
+</body>
+</html>
